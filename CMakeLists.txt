@@ -21,7 +21,7 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 find_package(ros2_serial_example REQUIRED)
 
-install(DIRECTORY launch config
+install(DIRECTORY launch config bags
   DESTINATION share/${PROJECT_NAME}
 )
 
