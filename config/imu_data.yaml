@@ -4,7 +4,7 @@ ros2_to_serial_bridge:
                                        # 'uart' and 'udp' are currently supported.
         device: /dev/pts/6             # Which device to use for communications;
                                        # only used when backend is 'uart'.
-        baudrate: 9600                   # The baudrate to set on the device; if
+        baudrate: 115200                   # The baudrate to set on the device; if
                                        # set to 0, setting baudrate is skipped.
                                        # Only used when backend is 'uart'.
         udp_recv_port: 2020            # Which UDP port to use for receiving
