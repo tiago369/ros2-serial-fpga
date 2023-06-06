@@ -93,32 +93,32 @@ architecture behave of uart_protocol is
   
 begin
    
-  process is
+  process(r_CLOCK)
   begin
  
     -- Tell the UART to send a command.
-    wait until rising_edge(r_CLOCK);
-    wait until rising_edge(r_CLOCK);
-    r_TX_DV   <= '1';
-    r_TX_BYTE <= X"AB";
-    wait until rising_edge(r_CLOCK);
-    r_TX_DV   <= '0';
-    wait until w_TX_DONE = '1';
+    -- wait until rising_edge(r_CLOCK);
+    -- wait until rising_edge(r_CLOCK);
+    -- r_TX_DV   <= '1';
+    -- r_TX_BYTE <= X"AB";
+    -- wait until rising_edge(r_CLOCK);
+    -- r_TX_DV   <= '0';
+    -- wait until w_TX_DONE = '1';
  
      
     -- Send a command to the UART
-    wait until rising_edge(r_CLOCK);
-    UART_WRITE_BYTE(X"3F", r_RX_SERIAL);
-    wait until rising_edge(r_CLOCK);
+    -- wait until rising_edge(r_CLOCK);
+    -- UART_WRITE_BYTE(X"3F", r_RX_SERIAL);
+    -- wait until rising_edge(r_CLOCK);
  
     -- Check that the correct command was received
-    if w_RX_BYTE = X"3F" then
-      report "Test Passed - Correct Byte Received" severity note;
-    else
-      report "Test Failed - Incorrect Byte Received" severity note;
-    end if;
+    -- if w_RX_BYTE = X"3F" then
+    --   report "Test Passed - Correct Byte Received" severity note;
+    -- else
+    --   report "Test Failed - Incorrect Byte Received" severity note;
+    -- end if;
  
-    assert false report "Tests Complete" severity failure;
+    -- assert false report "Tests Complete" severity failure;
      
   end process;
   -----------------------------------------------------
@@ -141,31 +141,61 @@ begin
   process(fsm_reg)
   variable aux_len : integer := 0;
   variable aux_crc : integer := 0;
+  signal len : std_logic_vector(16 downto 0);
+  signal crc : std_logic_vector(16 downto 0);
 
   begin
     fsm_next <= fsm_reg;
 
     case fsm_reg is
+
       -- check if header is recieved (topic ID)
       when zero =>
         if w_RX_BYTE = X"" then -- Discover the topic id so this shit can work
           fsm_next <= one;
         end if;
+
       -- get len of the buffer
       when one =>
         -- cria contador para pegar os 2 bit e passar pro proximo
+        if aux_len < 1 then
+          len <= w_RX_BYTE;
+          aux_len := aux_len + 1;
+        else
+          len <= w_RX_BYTE;
+          fsm_next <= two;
+        end if;
+
       -- get crc
       when two =>
         -- mesma vibe do anterior
+        if aux_crc < 1 then
+          crc <= w_RX_BYTE;
+          aux_crc := aux_crc + 1;
+        else
+          crc <= w_RX_BYTE;
+          signal payload : std_logic_vector(len-1 downto 0);
+          fsm_next <= three;
+        end if;
       -- add msgs to the buffer
       when three =>
         -- vai adicionando valores na variavel de payload (ainda tenho que descobirr oq fazer com ela)
         -- vai somando os bits tbm pra pegar o crc (deve ser facil)
+        if w_RX_BYTE != X"00" then
+          payload <= w_RX_BYTE;
+        else
+          fsm_next <= five;
+        end if;
       -- check src
       when four =>
           -- achar uma forma de esvaziar a variavel (c++ seria mais facil)
+
       -- clear variables to start again
       when five =>
+       len <= (others => '0');
+       crc <= (others => '0');
+       fsm_next <= zero;
+
     end case;
   end process;
    
