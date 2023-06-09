@@ -51,7 +51,8 @@ begin
   begin
     if rising_edge(i_Clk) then
       r_RX_Data_R <= i_RX_Serial;
-      r_RX_Data   <= r_RX_Data_R; end if; end process p_SAMPLE; -- Purpose: Control RX state machine p_UART_RX : process (i_Clk) begin if rising_edge(i_Clk) then case r_SM_Main is when s_Idle =>
+      r_RX_Data   <= r_RX_Data_R; end if; end process p_SAMPLE; -- Purpose: Control RX state machine 
+		p_UART_RX : process (i_Clk) begin if rising_edge(i_Clk) then case r_SM_Main is when s_Idle =>
           r_RX_DV     <= '0';
           r_Clk_Count <= 0;
           r_Bit_Index <= 0;

@@ -6,11 +6,14 @@ use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
  
 entity uart_protocol is
+generic (
+    g_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
+    );
   port(reset : in std_logic);
 end uart_protocol;
  
 architecture behave of uart_protocol is
-    type fsm_type is (zero, one, two); -- 2 states are required for Mealy
+    type fsm_type is (zero, one, two, three, four, five); -- 2 states are required for Mealy
     signal fsm_reg, fsm_next : fsm_type;
 
   ------------------------
@@ -22,14 +25,21 @@ architecture behave of uart_protocol is
     -- 50000000 / 115200 = 87 Clocks Per Bit.
       c_CLKS_PER_BIT : integer := 434   -- Needs to be set correctly
       );
-    port ();
+    port (
+	   i_clk       : in  std_logic;
+      i_tx_dv     : in  std_logic;
+      i_tx_byte   : in  std_logic_vector(7 downto 0);
+      o_tx_active : out std_logic;
+      o_tx_serial : out std_logic;
+      o_tx_done   : out std_logic
+	 );
   end component uart_tx;
  
   component uart_rx is
     generic (
       g_CLKS_PER_BIT : integer := 115   -- Needs to be set correctly
       );
-    port (
+	 port(
       i_clk       : in  std_logic;
       i_rx_serial : in  std_logic;
       o_rx_dv     : out std_logic;
@@ -66,7 +76,8 @@ architecture behave of uart_protocol is
     end loop;  -- ii
  
     -- Send Stop Bit
-    o_serial <= '1'; wait for c_BIT_PERIOD; end UART_WRITE_BYTE; begin -- Instantiate UART transmitter UART_TX_INST : uart_tx generic map ( g_CLKS_PER_BIT => c_CLKS_PER_BIT)
+    o_serial <= '1'; wait for c_BIT_PERIOD; end UART_WRITE_BYTE; begin -- Instantiate UART transmitter 
+	 UART_TX_INST : uart_tx generic map ( g_CLKS_PER_BIT => c_CLKS_PER_BIT)
     port map (
       i_clk       => r_CLOCK,
       i_tx_dv     => r_TX_DV,
@@ -89,38 +100,6 @@ architecture behave of uart_protocol is
       );
  
   r_CLOCK <= not r_CLOCK after 50 ns;
-  -----------------------------------
-  
-begin
-   
-  process(r_CLOCK)
-  begin
- 
-    -- Tell the UART to send a command.
-    -- wait until rising_edge(r_CLOCK);
-    -- wait until rising_edge(r_CLOCK);
-    -- r_TX_DV   <= '1';
-    -- r_TX_BYTE <= X"AB";
-    -- wait until rising_edge(r_CLOCK);
-    -- r_TX_DV   <= '0';
-    -- wait until w_TX_DONE = '1';
- 
-     
-    -- Send a command to the UART
-    -- wait until rising_edge(r_CLOCK);
-    -- UART_WRITE_BYTE(X"3F", r_RX_SERIAL);
-    -- wait until rising_edge(r_CLOCK);
- 
-    -- Check that the correct command was received
-    -- if w_RX_BYTE = X"3F" then
-    --   report "Test Passed - Correct Byte Received" severity note;
-    -- else
-    --   report "Test Failed - Incorrect Byte Received" severity note;
-    -- end if;
- 
-    -- assert false report "Tests Complete" severity failure;
-     
-  end process;
   -----------------------------------------------------
   -- Add Finite State machine to Broke the protocol
   -----------------------------------------------------
@@ -137,18 +116,19 @@ begin
     end if; 
   end process;
 
-
   process(fsm_reg)
   variable aux_len : integer := 0;
   variable aux_crc : integer := 0;
-  signal len : std_logic_vector(16 downto 0);
-  signal crc : std_logic_vector(16 downto 0);
+  
+  signal len : std_logic_vector(16 downto 0):= (others => '0');
+  signal crc : std_logic_vector(16 downto 0):= (others => '0');
+  signal data_full : std_logic := '0';
+  signal payload : std_logic_vector(63 downto 0);
 
   begin
     fsm_next <= fsm_reg;
 
     case fsm_reg is
-
       -- check if header is recieved (topic ID)
       when zero =>
         if w_RX_BYTE = X"" then -- Discover the topic id so this shit can work
@@ -174,29 +154,50 @@ begin
           aux_crc := aux_crc + 1;
         else
           crc <= w_RX_BYTE;
-          signal payload : std_logic_vector(len-1 downto 0);
           fsm_next <= three;
         end if;
       -- add msgs to the buffer
       when three =>
         -- vai adicionando valores na variavel de payload (ainda tenho que descobirr oq fazer com ela)
         -- vai somando os bits tbm pra pegar o crc (deve ser facil)
-        if w_RX_BYTE != X"00" then
-          payload <= w_RX_BYTE;
+        if (w_RX_BYTE /= X"00") then
+          payload <= payload & w_RX_BYTE;
         else
           fsm_next <= five;
+			 data_full <= '1';
         end if;
       -- check src
-      when four =>
+      --when four =>
           -- achar uma forma de esvaziar a variavel (c++ seria mais facil)
 
       -- clear variables to start again
       when five =>
        len <= (others => '0');
        crc <= (others => '0');
+		 data_full <= '0';
        fsm_next <= zero;
-
     end case;
   end process;
+  
+  
+  SEND_DATA : process(r_CLOCK)
+  signal data : std_logic_vector(63 downto 0);
+  variable next_proc : std_logic := '0';
+  variable const : integer := 0;
+  
+  begin
+  if(data_full='1') then
+    data <= payload;
+	 next_proc := '1';
+  elsif(is_rising(r_CLOCK) and next_proc) then
+    UART_WRITE_BYTE(data(63-const downto 48-const), r_RX_SERIAL);
+	 const := const - 15;
+	 if const > 50 then
+	   const := 0;
+	 end if;
+  end if;
+  
+  end process;
+  
    
 end behave;
