@@ -7,9 +7,18 @@ use ieee.numeric_std.all;
  
 entity uart_protocol is
 generic (
-    g_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
+    c_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
     );
-  port(reset : in std_logic);
+  port(reset  : in std_logic;
+  r_CLOCK     : in std_logic;
+  r_TX_DV     : std_logic;
+  r_TX_BYTE   : std_logic_vector(7 downto 0);
+  w_TX_SERIAL : out std_logic;
+  w_TX_DONE   : out std_logic;
+  w_RX_DV     : out std_logic;
+  w_RX_BYTE   : out std_logic_vector(7 downto 0);
+  r_RX_SERIAL : std_logic
+  );
 end uart_protocol;
  
 architecture behave of uart_protocol is
@@ -48,17 +57,7 @@ architecture behave of uart_protocol is
   end component uart_rx;
  
   constant c_BIT_PERIOD : time := 8680 ns;
-   
-  signal r_CLOCK     : std_logic                    := '0';
-  signal r_TX_DV     : std_logic                    := '0';
-  signal r_TX_BYTE   : std_logic_vector(7 downto 0) := (others => '0');
-  signal w_TX_SERIAL : std_logic;
-  signal w_TX_DONE   : std_logic;
-  signal w_RX_DV     : std_logic;
-  signal w_RX_BYTE   : std_logic_vector(7 downto 0);
-  signal r_RX_SERIAL : std_logic := '1';
- 
-   
+  
   -- Low-level byte-write
   procedure UART_WRITE_BYTE (
     i_data_in       : in  std_logic_vector(7 downto 0);
@@ -77,7 +76,8 @@ architecture behave of uart_protocol is
  
     -- Send Stop Bit
     o_serial <= '1'; wait for c_BIT_PERIOD; end UART_WRITE_BYTE; begin -- Instantiate UART transmitter 
-	 UART_TX_INST : uart_tx generic map ( g_CLKS_PER_BIT => c_CLKS_PER_BIT)
+	 UART_TX_INST : uart_tx 
+	 --generic map (g_CLKS_PER_BIT => c_CLKS_PER_BIT)
     port map (
       i_clk       => r_CLOCK,
       i_tx_dv     => r_TX_DV,
@@ -99,7 +99,6 @@ architecture behave of uart_protocol is
       o_rx_byte   => w_RX_BYTE
       );
  
-  r_CLOCK <= not r_CLOCK after 50 ns;
   -----------------------------------------------------
   -- Add Finite State machine to Broke the protocol
   -----------------------------------------------------
@@ -108,8 +107,8 @@ architecture behave of uart_protocol is
   process(r_CLOCK, reset)
   begin
     if (reset = '1') then -- go to state zero if reset
-      fsm <= zero;
-    elsif (is_rising(r_CLOCK)) then -- otherwise update the states
+      fsm_reg <= zero;
+    elsif (rising_edge(r_CLOCK)) then -- otherwise update the states
       fsm_reg <= fsm_next;
     else
       null;
@@ -120,10 +119,10 @@ architecture behave of uart_protocol is
   variable aux_len : integer := 0;
   variable aux_crc : integer := 0;
   
-  signal len : std_logic_vector(16 downto 0):= (others => '0');
-  signal crc : std_logic_vector(16 downto 0):= (others => '0');
-  signal data_full : std_logic := '0';
-  signal payload : std_logic_vector(63 downto 0);
+  --signal len : std_logic_vector(16 downto 0) := (others => '0');
+  --signal crc : std_logic_vector(16 downto 0) := (others => '0');
+  --signal data_full : std_logic := '0';
+  --signal payload : std_logic_vector(63 downto 0);
 
   begin
     fsm_next <= fsm_reg;
@@ -131,7 +130,7 @@ architecture behave of uart_protocol is
     case fsm_reg is
       -- check if header is recieved (topic ID)
       when zero =>
-        if w_RX_BYTE = X"" then -- Discover the topic id so this shit can work
+        if w_RX_BYTE = X"0" then -- Discover the topic id so this shit can work
           fsm_next <= one;
         end if;
 
@@ -181,7 +180,7 @@ architecture behave of uart_protocol is
   
   
   SEND_DATA : process(r_CLOCK)
-  signal data : std_logic_vector(63 downto 0);
+  -- signal data : std_logic_vector(63 downto 0);
   variable next_proc : std_logic := '0';
   variable const : integer := 0;
   
@@ -189,7 +188,7 @@ architecture behave of uart_protocol is
   if(data_full='1') then
     data <= payload;
 	 next_proc := '1';
-  elsif(is_rising(r_CLOCK) and next_proc) then
+  elsif(rising_edge(r_CLOCK) and next_proc) then
     UART_WRITE_BYTE(data(63-const downto 48-const), r_RX_SERIAL);
 	 const := const - 15;
 	 if const > 50 then
