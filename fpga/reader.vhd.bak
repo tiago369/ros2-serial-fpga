@@ -5,31 +5,16 @@ library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
  
-entity reader is
+entity uart_protocol is
 generic (
-    c_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
+    g_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
     );
-  port(reset  : in std_logic;
-  r_CLOCK     : in std_logic;
-  r_TX_DV     : std_logic;
-  r_TX_BYTE   : std_logic_vector(7 downto 0);
-  w_TX_SERIAL : out std_logic;
-  w_TX_DONE   : out std_logic;
-  w_RX_DV     : out std_logic;
-  w_RX_BYTE   : inout std_logic_vector(7 downto 0)
-  --r_RX_SERIAL : in std_logic
-  );
-end reader;
+  port(reset : in std_logic);
+end uart_protocol;
  
-architecture behave of reader is
+architecture behave of uart_protocol is
     type fsm_type is (zero, one, two, three, four, five); -- 2 states are required for Mealy
     signal fsm_reg, fsm_next : fsm_type;
-	 
-	 signal len : std_logic_vector(16 downto 0) := (others => '0');
-    signal crc : std_logic_vector(16 downto 0) := (others => '0');
-    signal data_full : std_logic := '0';
-    signal payload : std_logic_vector(64 downto 0);
-	 signal data : std_logic_vector(63 downto 0);
 
   ------------------------
   -- serial communication
@@ -63,9 +48,17 @@ architecture behave of reader is
   end component uart_rx;
  
   constant c_BIT_PERIOD : time := 8680 ns;
-  
+   
+  signal r_CLOCK     : std_logic                    := '0';
+  signal r_TX_DV     : std_logic                    := '0';
+  signal r_TX_BYTE   : std_logic_vector(7 downto 0) := (others => '0');
+  signal w_TX_SERIAL : std_logic;
+  signal w_TX_DONE   : std_logic;
+  signal w_RX_DV     : std_logic;
+  signal w_RX_BYTE   : std_logic_vector(7 downto 0);
   signal r_RX_SERIAL : std_logic := '1';
-  
+ 
+   
   -- Low-level byte-write
   procedure UART_WRITE_BYTE (
     i_data_in       : in  std_logic_vector(7 downto 0);
@@ -84,8 +77,7 @@ architecture behave of reader is
  
     -- Send Stop Bit
     o_serial <= '1'; wait for c_BIT_PERIOD; end UART_WRITE_BYTE; begin -- Instantiate UART transmitter 
-	 UART_TX_INST : uart_tx 
-	 --generic map (g_CLKS_PER_BIT => c_CLKS_PER_BIT)
+	 UART_TX_INST : uart_tx generic map ( g_CLKS_PER_BIT => c_CLKS_PER_BIT)
     port map (
       i_clk       => r_CLOCK,
       i_tx_dv     => r_TX_DV,
@@ -107,6 +99,7 @@ architecture behave of reader is
       o_rx_byte   => w_RX_BYTE
       );
  
+  r_CLOCK <= not r_CLOCK after 50 ns;
   -----------------------------------------------------
   -- Add Finite State machine to Broke the protocol
   -----------------------------------------------------
@@ -115,20 +108,22 @@ architecture behave of reader is
   process(r_CLOCK, reset)
   begin
     if (reset = '1') then -- go to state zero if reset
-      fsm_reg <= zero;
-    elsif (rising_edge(r_CLOCK)) then -- otherwise update the states
+      fsm <= zero;
+    elsif (is_rising(r_CLOCK)) then -- otherwise update the states
       fsm_reg <= fsm_next;
     else
       null;
     end if; 
   end process;
-  
-  
 
-  process(fsm_reg, w_RX_BYTE)
+  process(fsm_reg)
   variable aux_len : integer := 0;
   variable aux_crc : integer := 0;
-  variable pay : integer := 0;
+  
+  signal len : std_logic_vector(16 downto 0):= (others => '0');
+  signal crc : std_logic_vector(16 downto 0):= (others => '0');
+  signal data_full : std_logic := '0';
+  signal payload : std_logic_vector(63 downto 0);
 
   begin
     fsm_next <= fsm_reg;
@@ -136,7 +131,7 @@ architecture behave of reader is
     case fsm_reg is
       -- check if header is recieved (topic ID)
       when zero =>
-        if w_RX_BYTE = X"00" then -- Discover the topic id so this shit can work
+        if w_RX_BYTE = X"" then -- Discover the topic id so this shit can work
           fsm_next <= one;
         end if;
 
@@ -144,10 +139,10 @@ architecture behave of reader is
       when one =>
         -- cria contador para pegar os 2 bit e passar pro proximo
         if aux_len < 1 then
-          len(15 downto 8) <= w_RX_BYTE;
+          len <= w_RX_BYTE;
           aux_len := aux_len + 1;
         else
-          len(7 downto 0) <= w_RX_BYTE;
+          len <= w_RX_BYTE;
           fsm_next <= two;
         end if;
 
@@ -155,10 +150,10 @@ architecture behave of reader is
       when two =>
         -- mesma vibe do anterior
         if aux_crc < 1 then
-          crc(15 downto 8) <= w_RX_BYTE;
+          crc <= w_RX_BYTE;
           aux_crc := aux_crc + 1;
         else
-          crc(7 downto 0) <= w_RX_BYTE;
+          crc <= w_RX_BYTE;
           fsm_next <= three;
         end if;
       -- add msgs to the buffer
@@ -166,14 +161,13 @@ architecture behave of reader is
         -- vai adicionando valores na variavel de payload (ainda tenho que descobirr oq fazer com ela)
         -- vai somando os bits tbm pra pegar o crc (deve ser facil)
         if (w_RX_BYTE /= X"00") then
-          payload(63-pay downto 48-pay) <= w_RX_BYTE;
-			 pay := pay + 8;
+          payload <= payload & w_RX_BYTE;
         else
           fsm_next <= five;
 			 data_full <= '1';
         end if;
       -- check src
-      when four =>
+      --when four =>
           -- achar uma forma de esvaziar a variavel (c++ seria mais facil)
 
       -- clear variables to start again
@@ -187,6 +181,7 @@ architecture behave of reader is
   
   
   SEND_DATA : process(r_CLOCK)
+  signal data : std_logic_vector(63 downto 0);
   variable next_proc : std_logic := '0';
   variable const : integer := 0;
   
@@ -194,7 +189,7 @@ architecture behave of reader is
   if(data_full='1') then
     data <= payload;
 	 next_proc := '1';
-  elsif(rising_edge(r_CLOCK) and (next_proc='1')) then
+  elsif(is_rising(r_CLOCK) and next_proc) then
     UART_WRITE_BYTE(data(63-const downto 48-const), r_RX_SERIAL);
 	 const := const - 15;
 	 if const > 50 then
