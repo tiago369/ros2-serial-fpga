@@ -1,0 +1,25 @@
+
+State Machine - |reader|fsm_reg
+Name fsm_reg.five fsm_reg.four fsm_reg.three fsm_reg.two fsm_reg.one fsm_reg.zero 
+fsm_reg.zero 0 0 0 0 0 0 
+fsm_reg.one 0 0 0 0 1 1 
+fsm_reg.two 0 0 0 1 0 1 
+fsm_reg.three 0 0 1 0 0 1 
+fsm_reg.four 0 1 0 0 0 1 
+fsm_reg.five 1 0 0 0 0 1 
+
+State Machine - |reader|UART_RX:UART_RX_INST|r_SM_Main
+Name r_SM_Main.s_Cleanup r_SM_Main.s_RX_Stop_Bit r_SM_Main.s_RX_Data_Bits r_SM_Main.s_RX_Start_Bit r_SM_Main.s_Idle 
+r_SM_Main.s_Idle 0 0 0 0 0 
+r_SM_Main.s_RX_Start_Bit 0 0 0 1 1 
+r_SM_Main.s_RX_Data_Bits 0 0 1 0 1 
+r_SM_Main.s_RX_Stop_Bit 0 1 0 0 1 
+r_SM_Main.s_Cleanup 1 0 0 0 1 
+
+State Machine - |reader|UART_TX:UART_TX_INST|r_SM_Main
+Name r_SM_Main.s_Cleanup r_SM_Main.s_TX_Stop_Bit r_SM_Main.s_TX_Data_Bits r_SM_Main.s_TX_Start_Bit r_SM_Main.s_Idle 
+r_SM_Main.s_Idle 0 0 0 0 0 
+r_SM_Main.s_TX_Start_Bit 0 0 0 1 1 
+r_SM_Main.s_TX_Data_Bits 0 0 1 0 1 
+r_SM_Main.s_TX_Stop_Bit 0 1 0 0 1 
+r_SM_Main.s_Cleanup 1 0 0 0 1 

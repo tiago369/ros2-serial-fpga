@@ -1,0 +1,53 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "w_TX_DONE",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_RX_BYTE[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_CLOCK",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

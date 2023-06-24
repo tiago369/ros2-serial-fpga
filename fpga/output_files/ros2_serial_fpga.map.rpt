@@ -1,6 +1,6 @@
 Analysis & Synthesis report for ros2_serial_fpga
-Wed Jun 21 09:48:15 2023
-Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+Sat Jun 24 19:46:00 2023
+Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
 ---------------------
@@ -10,14 +10,31 @@ Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |reader|fsm_reg
+  9. State Machine - |reader|UART_RX:UART_RX_INST|r_SM_Main
+ 10. State Machine - |reader|UART_TX:UART_TX_INST|r_SM_Main
+ 11. User-Specified and Inferred Latches
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: Top-level Entity: |reader
+ 17. Parameter Settings for User Entity Instance: UART_TX:UART_TX_INST
+ 18. Parameter Settings for User Entity Instance: UART_RX:UART_RX_INST
+ 19. Port Connectivity Checks: "UART_TX:UART_TX_INST"
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2023  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -34,24 +51,24 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+-------------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                        ;
-+------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Jun 21 09:48:15 2023              ;
-; Quartus Prime Version              ; 22.1std.1 Build 917 02/14/2023 SC Lite Edition ;
-; Revision Name                      ; ros2_serial_fpga                               ;
-; Top-level Entity Name              ; reader                                         ;
-; Family                             ; Cyclone IV E                                   ;
-; Total logic elements               ; N/A until Partition Merge                      ;
-;     Total combinational functions  ; N/A until Partition Merge                      ;
-;     Dedicated logic registers      ; N/A until Partition Merge                      ;
-; Total registers                    ; N/A until Partition Merge                      ;
-; Total pins                         ; N/A until Partition Merge                      ;
-; Total virtual pins                 ; N/A until Partition Merge                      ;
-; Total memory bits                  ; N/A until Partition Merge                      ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                      ;
-; Total PLLs                         ; N/A until Partition Merge                      ;
-+------------------------------------+------------------------------------------------+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Jun 24 19:46:00 2023       ;
+; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
+; Revision Name                      ; ros2_serial_fpga                            ;
+; Top-level Entity Name              ; reader                                      ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 203                                         ;
+;     Total combinational functions  ; 201                                         ;
+;     Dedicated logic registers      ; 27                                          ;
+; Total registers                    ; 27                                          ;
+; Total pins                         ; 22                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -145,15 +162,323 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 6           ;
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                        ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                 ; Library ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------+---------+
+; reader.vhd                       ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd  ;         ;
+; UART_RX.vhd                      ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_RX.vhd ;         ;
+; UART_TX.vhd                      ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_TX.vhd ;         ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                 ;
++---------------------------------------------+---------------+
+; Resource                                    ; Usage         ;
++---------------------------------------------+---------------+
+; Estimated Total logic elements              ; 203           ;
+;                                             ;               ;
+; Total combinational functions               ; 201           ;
+; Logic element usage by number of LUT inputs ;               ;
+;     -- 4 input functions                    ; 46            ;
+;     -- 3 input functions                    ; 82            ;
+;     -- <=2 input functions                  ; 73            ;
+;                                             ;               ;
+; Logic elements by mode                      ;               ;
+;     -- normal mode                          ; 135           ;
+;     -- arithmetic mode                      ; 66            ;
+;                                             ;               ;
+; Total registers                             ; 27            ;
+;     -- Dedicated logic registers            ; 27            ;
+;     -- I/O registers                        ; 0             ;
+;                                             ;               ;
+; I/O pins                                    ; 22            ;
+;                                             ;               ;
+; Embedded Multiplier 9-bit elements          ; 0             ;
+;                                             ;               ;
+; Maximum fan-out node                        ; aux_crc[31]~0 ;
+; Maximum fan-out                             ; 31            ;
+; Total fan-out                               ; 676           ;
+; Average fan-out                             ; 2.41          ;
++---------------------------------------------+---------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                               ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name          ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+-------------+--------------+
+; |reader                    ; 201 (172)           ; 27 (6)                    ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |reader                      ; reader      ; work         ;
+;    |UART_RX:UART_RX_INST|  ; 29 (29)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reader|UART_RX:UART_RX_INST ; UART_RX     ; work         ;
+;    |UART_TX:UART_TX_INST|  ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reader|UART_TX:UART_TX_INST ; UART_TX     ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------+
+; State Machine - |reader|fsm_reg                                                                        ;
++---------------+--------------+--------------+---------------+-------------+-------------+--------------+
+; Name          ; fsm_reg.five ; fsm_reg.four ; fsm_reg.three ; fsm_reg.two ; fsm_reg.one ; fsm_reg.zero ;
++---------------+--------------+--------------+---------------+-------------+-------------+--------------+
+; fsm_reg.zero  ; 0            ; 0            ; 0             ; 0           ; 0           ; 0            ;
+; fsm_reg.one   ; 0            ; 0            ; 0             ; 0           ; 1           ; 1            ;
+; fsm_reg.two   ; 0            ; 0            ; 0             ; 1           ; 0           ; 1            ;
+; fsm_reg.three ; 0            ; 0            ; 1             ; 0           ; 0           ; 1            ;
+; fsm_reg.four  ; 0            ; 1            ; 0             ; 0           ; 0           ; 1            ;
+; fsm_reg.five  ; 1            ; 0            ; 0             ; 0           ; 0           ; 1            ;
++---------------+--------------+--------------+---------------+-------------+-------------+--------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |reader|UART_RX:UART_RX_INST|r_SM_Main                                                                                            ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+------------------+
+; Name                     ; r_SM_Main.s_Cleanup ; r_SM_Main.s_RX_Stop_Bit ; r_SM_Main.s_RX_Data_Bits ; r_SM_Main.s_RX_Start_Bit ; r_SM_Main.s_Idle ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+------------------+
+; r_SM_Main.s_Idle         ; 0                   ; 0                       ; 0                        ; 0                        ; 0                ;
+; r_SM_Main.s_RX_Start_Bit ; 0                   ; 0                       ; 0                        ; 1                        ; 1                ;
+; r_SM_Main.s_RX_Data_Bits ; 0                   ; 0                       ; 1                        ; 0                        ; 1                ;
+; r_SM_Main.s_RX_Stop_Bit  ; 0                   ; 1                       ; 0                        ; 0                        ; 1                ;
+; r_SM_Main.s_Cleanup      ; 1                   ; 0                       ; 0                        ; 0                        ; 1                ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |reader|UART_TX:UART_TX_INST|r_SM_Main                                                                                            ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+------------------+
+; Name                     ; r_SM_Main.s_Cleanup ; r_SM_Main.s_TX_Stop_Bit ; r_SM_Main.s_TX_Data_Bits ; r_SM_Main.s_TX_Start_Bit ; r_SM_Main.s_Idle ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+------------------+
+; r_SM_Main.s_Idle         ; 0                   ; 0                       ; 0                        ; 0                        ; 0                ;
+; r_SM_Main.s_TX_Start_Bit ; 0                   ; 0                       ; 0                        ; 1                        ; 1                ;
+; r_SM_Main.s_TX_Data_Bits ; 0                   ; 0                       ; 1                        ; 0                        ; 1                ;
+; r_SM_Main.s_TX_Stop_Bit  ; 0                   ; 1                       ; 0                        ; 0                        ; 1                ;
+; r_SM_Main.s_Cleanup      ; 1                   ; 0                       ; 0                        ; 0                        ; 1                ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                ;
++-----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------+------------------------+
+; data_full                                           ; Selector6           ; yes                    ;
+; aux_len[31]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[30]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[29]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[28]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[27]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[26]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[25]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[24]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[23]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[22]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[21]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[20]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[19]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[18]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[17]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[16]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[15]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[14]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[13]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[12]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[11]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[10]                                         ; aux_len[30]         ; yes                    ;
+; aux_len[9]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[8]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[7]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[6]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[5]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[4]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[3]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[2]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[1]                                          ; aux_len[30]         ; yes                    ;
+; aux_len[0]                                          ; aux_len[30]         ; yes                    ;
+; aux_crc[31]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[30]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[29]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[28]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[27]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[26]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[25]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[24]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[23]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[22]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[21]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[20]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[19]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[18]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[17]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[16]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[15]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[14]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[13]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[12]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[11]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[10]                                         ; aux_crc[31]         ; yes                    ;
+; aux_crc[9]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[8]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[7]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[6]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[5]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[4]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[3]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[2]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[1]                                          ; aux_crc[31]         ; yes                    ;
+; aux_crc[0]                                          ; aux_crc[31]         ; yes                    ;
+; Number of user-specified and inferred latches = 65  ;                     ;                        ;
++-----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++----------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                     ;
++-----------------------------------------------+----------------------------------------+
+; Register name                                 ; Reason for Removal                     ;
++-----------------------------------------------+----------------------------------------+
+; UART_RX:UART_RX_INST|r_RX_DV                  ; Stuck at GND due to stuck port data_in ;
+; UART_TX:UART_TX_INST|o_TX_Serial              ; Stuck at VCC due to stuck port data_in ;
+; UART_RX:UART_RX_INST|r_SM_Main.s_RX_Start_Bit ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_SM_Main.s_RX_Data_Bits ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_SM_Main.s_RX_Stop_Bit  ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_SM_Main.s_Cleanup      ; Lost fanout                            ;
+; UART_TX:UART_TX_INST|r_SM_Main.s_TX_Start_Bit ; Lost fanout                            ;
+; UART_TX:UART_TX_INST|r_SM_Main.s_TX_Data_Bits ; Lost fanout                            ;
+; UART_TX:UART_TX_INST|r_SM_Main.s_TX_Stop_Bit  ; Lost fanout                            ;
+; UART_TX:UART_TX_INST|r_SM_Main.s_Cleanup      ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_SM_Main.s_Idle         ; Lost fanout                            ;
+; UART_TX:UART_TX_INST|r_SM_Main.s_Idle         ; Lost fanout                            ;
+; fsm_reg.four                                  ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 13        ;                                        ;
++-----------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 27    ;
+; Number of registers using Synchronous Clear  ; 7     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 5     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; r_RX_SERIAL                            ; 2       ;
+; Total number of inverted registers = 1 ;         ;
++----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |reader|UART_RX:UART_RX_INST|r_Bit_Index[2] ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |reader|Selector0                           ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |reader|Selector1                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |reader ;
++--------------------+-------+-------------------------------------------+
+; Parameter Name     ; Value ; Type                                      ;
++--------------------+-------+-------------------------------------------+
+; c_CLKS_PER_BIT     ; 115   ; Signed Integer                            ;
+; MAX_MESSAGE_LENGTH ; 255   ; Signed Integer                            ;
++--------------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: UART_TX:UART_TX_INST ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; g_clks_per_bit ; 115   ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: UART_RX:UART_RX_INST ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; g_clks_per_bit ; 115   ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UART_TX:UART_TX_INST"                                                                      ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; o_tx_active ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 22                          ;
+; cycloneiii_ff         ; 27                          ;
+;     CLR               ; 5                           ;
+;     SCLR              ; 7                           ;
+;     plain             ; 15                          ;
+; cycloneiii_io_obuf    ; 8                           ;
+; cycloneiii_lcell_comb ; 203                         ;
+;     arith             ; 66                          ;
+;         2 data inputs ; 64                          ;
+;         3 data inputs ; 2                           ;
+;     normal            ; 137                         ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 80                          ;
+;         4 data inputs ; 46                          ;
+;                       ;                             ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 4.05                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -161,25 +486,155 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
-    Info: Processing started: Wed Jun 21 09:48:10 2023
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Sat Jun 24 19:45:49 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ros2_serial_fpga -c ros2_serial_fpga
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file reader.vhd
-    Info (12022): Found design unit 1: reader-behave File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 24
-    Info (12023): Found entity 1: reader File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 8
+    Info (12022): Found design unit 1: reader-behave File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 25
+    Info (12023): Found entity 1: reader File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 8
 Info (12021): Found 2 design units, including 1 entities, in source file UART_RX.vhd
-    Info (12022): Found design unit 1: UART_RX-rtl File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_RX.vhd Line: 31
-    Info (12023): Found entity 1: UART_RX File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_RX.vhd Line: 18
+    Info (12022): Found design unit 1: UART_RX-rtl File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_RX.vhd Line: 31
+    Info (12023): Found entity 1: UART_RX File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_RX.vhd Line: 18
 Info (12021): Found 2 design units, including 1 entities, in source file UART_TX.vhd
-    Info (12022): Found design unit 1: UART_TX-RTL File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_TX.vhd Line: 33
-    Info (12023): Found entity 1: UART_TX File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_TX.vhd Line: 18
-Error (10405): VHDL error at reader.vhd(169): can't determine type of object at or near identifier "to_integer" -- found 0 possible types File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 169
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 409 megabytes
-    Error: Processing ended: Wed Jun 21 09:48:15 2023
-    Error: Elapsed time: 00:00:05
-    Error: Total CPU time (on all processors): 00:00:13
+    Info (12022): Found design unit 1: UART_TX-RTL File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_TX.vhd Line: 33
+    Info (12023): Found entity 1: UART_TX File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_TX.vhd Line: 18
+Info (12127): Elaborating entity "reader" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at reader.vhd(29): object "len" assigned a value but never read File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 29
+Warning (10036): Verilog HDL or VHDL warning at reader.vhd(30): object "crc" assigned a value but never read File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 30
+Warning (10631): VHDL Process Statement warning at reader.vhd(143): inferring latch(es) for signal or variable "aux_len", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Warning (10631): VHDL Process Statement warning at reader.vhd(143): inferring latch(es) for signal or variable "aux_crc", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Warning (10631): VHDL Process Statement warning at reader.vhd(143): inferring latch(es) for signal or variable "pay", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Warning (10631): VHDL Process Statement warning at reader.vhd(143): inferring latch(es) for signal or variable "payload", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Warning (10631): VHDL Process Statement warning at reader.vhd(143): inferring latch(es) for signal or variable "data_full", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Warning (10492): VHDL Process Statement warning at reader.vhd(213): signal "data_full" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 213
+Warning (10492): VHDL Process Statement warning at reader.vhd(214): signal "payload" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 214
+Warning (10631): VHDL Process Statement warning at reader.vhd(208): inferring latch(es) for signal or variable "data", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 208
+Warning (10631): VHDL Process Statement warning at reader.vhd(208): inferring latch(es) for signal or variable "next_proc", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 208
+Info (10041): Inferred latch for "SEND_DATA:next_proc" at reader.vhd(213) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 213
+Info (10041): Inferred latch for "data_full" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[0]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[1]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[2]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[3]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[4]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[5]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[6]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[7]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[8]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[9]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[10]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[11]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[12]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[13]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[14]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[15]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[16]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[17]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[18]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[19]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[20]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[21]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[22]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[23]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[24]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[25]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[26]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[27]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[28]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[29]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[30]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_crc[31]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[0]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[1]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[2]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[3]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[4]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[5]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[6]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[7]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[8]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[9]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[10]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[11]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[12]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[13]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[14]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[15]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[16]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[17]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[18]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[19]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[20]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[21]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[22]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[23]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[24]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[25]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[26]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[27]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[28]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[29]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[30]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (10041): Inferred latch for "aux_len[31]" at reader.vhd(143) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 143
+Info (12128): Elaborating entity "UART_TX" for hierarchy "UART_TX:UART_TX_INST" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 103
+Info (12128): Elaborating entity "UART_RX" for hierarchy "UART_RX:UART_RX_INST" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 115
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[0]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[1]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[2]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[3]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[4]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[5]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[6]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[7]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[0]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[1]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[2]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[3]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[4]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[5]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[6]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "w_RX_BYTE[7]" is moved to its source File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+Warning (13012): Latch data_full has unsafe behavior File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 31
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal fsm_reg.five File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 27
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "w_RX_BYTE[0]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[1]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[2]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[3]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[4]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[5]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[6]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+    Warning (13010): Node "w_RX_BYTE[7]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 20
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "w_TX_SERIAL" is stuck at VCC File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 17
+    Warning (13410): Pin "w_RX_DV" is stuck at GND File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 19
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 10 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 9 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "r_TX_DV" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[0]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[1]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[2]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[3]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[4]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[5]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[6]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (15610): No output dependent on input pin "r_TX_BYTE[7]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+Info (21057): Implemented 225 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 11 input pins
+    Info (21059): Implemented 3 output pins
+    Info (21060): Implemented 8 bidirectional pins
+    Info (21061): Implemented 203 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 45 warnings
+    Info: Peak virtual memory: 419 megabytes
+    Info: Processing ended: Sat Jun 24 19:46:00 2023
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:23
 
 

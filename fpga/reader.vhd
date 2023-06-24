@@ -7,7 +7,8 @@ use ieee.numeric_std.all;
  
 entity reader is
 generic (
-    c_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
+    c_CLKS_PER_BIT : integer := 115;     -- Needs to be set correctly
+	 MAX_MESSAGE_LENGTH: positive := 255
     );
   port(reset  : in std_logic;
   r_CLOCK     : in std_logic;
@@ -28,8 +29,8 @@ architecture behave of reader is
 	 signal len : std_logic_vector(16 downto 0) := (others => '0');
     signal crc : std_logic_vector(16 downto 0) := (others => '0');
     signal data_full : std_logic := '0';
-    signal payload : std_logic_vector(64 downto 0);
-	 signal data : std_logic_vector(63 downto 0);
+    signal payload : std_logic_vector(MAX_MESSAGE_LENGTH*8 downto 0);
+	 signal data : std_logic_vector(MAX_MESSAGE_LENGTH*8 downto 0);
 
   ------------------------
   -- serial communication
@@ -38,7 +39,7 @@ architecture behave of reader is
     generic (
     -- Want to interface to 115200 baud UART
     -- 50000000 / 115200 = 87 Clocks Per Bit.
-      c_CLKS_PER_BIT : integer := 434   -- Needs to be set correctly
+      g_CLKS_PER_BIT : integer := 434  -- Needs to be set correctly
       );
     port (
 	   i_clk       : in  std_logic;
@@ -67,25 +68,40 @@ architecture behave of reader is
   signal r_RX_SERIAL : std_logic := '1';
   
   -- Low-level byte-write
-  procedure UART_WRITE_BYTE (
-    i_data_in       : in  std_logic_vector(7 downto 0);
-    signal o_serial : out std_logic) is
-  begin
- 
-    -- Send Start Bit
-    o_serial <= '0';
-    wait for c_BIT_PERIOD;
- 
-    -- Send Data Byte
-    for ii in 0 to 7 loop
-      o_serial <= i_data_in(ii);
-      wait for c_BIT_PERIOD;
-    end loop;  -- ii
- 
-    -- Send Stop Bit
-    o_serial <= '1'; wait for c_BIT_PERIOD; end UART_WRITE_BYTE; begin -- Instantiate UART transmitter 
+procedure UART_WRITE_BYTE (
+  i_data_in       : in  std_logic_vector(7 downto 0);
+  signal o_serial : out std_logic;
+  signal i_clock  : in  std_logic
+) is
+  variable ii : integer range 0 to 7 := 0;
+begin
+
+    if rising_edge(i_clock) then
+      if ii = 0 then
+        -- Send Start Bit
+        o_serial <= '0';
+      elsif ii <= 7 then
+        -- Send Data Byte
+        o_serial <= i_data_in(ii);
+      elsif ii = 8 then
+        -- Send Stop Bit
+        o_serial <= '1';
+      else
+        -- Do nothing
+        null;
+      end if;
+
+      ii := ii + 1;
+	else
+	  null;
+   end if;
+end UART_WRITE_BYTE;
+
+
+	 
+	 begin -- Instantiate UART transmitter 
 	 UART_TX_INST : uart_tx 
-	 --generic map (g_CLKS_PER_BIT => c_CLKS_PER_BIT)
+	 generic map (g_CLKS_PER_BIT => c_CLKS_PER_BIT)
     port map (
       i_clk       => r_CLOCK,
       i_tx_dv     => r_TX_DV,
@@ -122,7 +138,6 @@ architecture behave of reader is
       null;
     end if; 
   end process;
-  
   
 
   process(fsm_reg, w_RX_BYTE)
@@ -166,8 +181,12 @@ architecture behave of reader is
         -- vai adicionando valores na variavel de payload (ainda tenho que descobirr oq fazer com ela)
         -- vai somando os bits tbm pra pegar o crc (deve ser facil)
         if (w_RX_BYTE /= X"00") then
-          payload(63-pay downto 48-pay) <= w_RX_BYTE;
+		  if pay > (MAX_MESSAGE_LENGTH*8) then
+			   pay := 0;
+			end if;
+          payload((MAX_MESSAGE_LENGTH*8)-pay downto (MAX_MESSAGE_LENGTH*8)-7-pay) <= w_RX_BYTE;
 			 pay := pay + 8;
+			 
         else
           fsm_next <= five;
 			 data_full <= '1';
@@ -195,8 +214,8 @@ architecture behave of reader is
     data <= payload;
 	 next_proc := '1';
   elsif(rising_edge(r_CLOCK) and (next_proc='1')) then
-    UART_WRITE_BYTE(data(63-const downto 48-const), r_RX_SERIAL);
-	 const := const - 15;
+    UART_WRITE_BYTE(data((MAX_MESSAGE_LENGTH*8)-const downto (MAX_MESSAGE_LENGTH*8)-7-const), r_RX_SERIAL, r_CLOCK);
+	 const := const - 8;
 	 if const > 50 then
 	   const := 0;
 	 end if;
