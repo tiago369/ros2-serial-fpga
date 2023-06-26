@@ -1,5 +1,5 @@
 Flow report for ros2_serial_fpga
-Sat Jun 24 19:46:00 2023
+Sun Jun 25 19:49:39 2023
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,18 +41,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sat Jun 24 19:46:00 2023       ;
+; Flow Status                        ; Successful - Sun Jun 25 19:49:39 2023       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; ros2_serial_fpga                            ;
 ; Top-level Entity Name              ; reader                                      ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 203                                         ;
-;     Total combinational functions  ; 201                                         ;
-;     Dedicated logic registers      ; 27                                          ;
-; Total registers                    ; 27                                          ;
-; Total pins                         ; 22                                          ;
+; Total logic elements               ; 33                                          ;
+;     Total combinational functions  ; 31                                          ;
+;     Dedicated logic registers      ; 23                                          ;
+; Total registers                    ; 23                                          ;
+; Total pins                         ; 18                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/24/2023 19:45:49 ;
+; Start date & time ; 06/25/2023 19:46:30 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ros2_serial_fpga    ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+------------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value    ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+------------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 102037074705503.168764674921866        ; --               ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 102037074705503.168773319006116        ; --               ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --               ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --               ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --               ; --          ; eda_board_design_signal_integrity ;
@@ -100,8 +100,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 419 MB              ; 00:00:23                           ;
-; Total                ; 00:00:11     ; --                      ; --                  ; 00:00:23                           ;
+; Analysis & Synthesis ; 00:03:08     ; 1.0                     ; 936 MB              ; 00:03:16                           ;
+; Total                ; 00:03:08     ; --                      ; --                  ; 00:03:16                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

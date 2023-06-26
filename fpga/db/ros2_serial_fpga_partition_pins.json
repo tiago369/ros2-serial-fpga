@@ -4,10 +4,6 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "w_TX_DONE",
-					"strict" : false
-				},
-				{
 					"name" : "w_RX_BYTE[0]",
 					"strict" : false
 				},

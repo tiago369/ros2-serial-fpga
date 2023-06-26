@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Sat Jun 24 19:46:00 2023
+Analysis & Synthesis Status : Successful - Sun Jun 25 19:49:39 2023
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : ros2_serial_fpga
 Top-level Entity Name : reader
 Family : Cyclone IV E
-Total logic elements : 203
-    Total combinational functions : 201
-    Dedicated logic registers : 27
-Total registers : 27
-Total pins : 22
+Total logic elements : 33
+    Total combinational functions : 31
+    Dedicated logic registers : 23
+Total registers : 23
+Total pins : 18
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

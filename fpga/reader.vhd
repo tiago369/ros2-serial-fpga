@@ -8,15 +8,11 @@ use ieee.numeric_std.all;
 entity reader is
 generic (
     c_CLKS_PER_BIT : integer := 115;     -- Needs to be set correctly
-	 MAX_MESSAGE_LENGTH: positive := 255
+	 MAX_MESSAGE_LENGTH: positive := 25
     );
   port(reset  : in std_logic;
   r_CLOCK     : in std_logic;
-  r_TX_DV     : std_logic;
-  r_TX_BYTE   : std_logic_vector(7 downto 0);
-  w_TX_SERIAL : out std_logic;
-  w_TX_DONE   : out std_logic;
-  w_RX_DV     : out std_logic;
+  r_TX_BYTE   : in std_logic_vector(7 downto 0);
   w_RX_BYTE   : inout std_logic_vector(7 downto 0)
   --r_RX_SERIAL : in std_logic
   );
@@ -30,7 +26,8 @@ architecture behave of reader is
     signal crc : std_logic_vector(16 downto 0) := (others => '0');
     signal data_full : std_logic := '0';
     signal payload : std_logic_vector(MAX_MESSAGE_LENGTH*8 downto 0);
-	 signal data : std_logic_vector(MAX_MESSAGE_LENGTH*8 downto 0);
+	 signal data : std_logic_vector(MAX_MESSAGE_LENGTH*8+10 downto 0);
+	 signal next_proc : std_logic := '0';
 
   ------------------------
   -- serial communication
@@ -65,6 +62,10 @@ architecture behave of reader is
  
   constant c_BIT_PERIOD : time := 8680 ns;
   
+  signal r_TX_DV     : std_logic                    := '0';
+  signal w_TX_SERIAL : std_logic;
+  signal w_TX_DONE   : std_logic;
+  signal w_RX_DV     : std_logic;
   signal r_RX_SERIAL : std_logic := '1';
   
   -- Low-level byte-write
@@ -98,8 +99,28 @@ begin
 end UART_WRITE_BYTE;
 
 
+
+  ------------------------
+  ---    TX protocol   ---
+  ------------------------
+    component cobs_encode is
+    generic (
+		  MAX_PAYLOAD_LENGTH : integer := 255  -- Maximum payload length (excluding topic ID and CRC)
+      );
+	 port(
+        clk          : in  std_logic;                                    -- Clock signal
+        reset        : in  std_logic;                                    -- Reset signal
+        topic_id     : in  std_logic_vector(7 downto 0);                 -- Topic ID
+        payload_in   : in  std_logic_vector(0 to MAX_PAYLOAD_LENGTH-1);  -- Input payload vector
+        valid_in     : in  std_logic;                                    -- Input data valid signal
+        encoded_data : out std_logic_vector(0 to MAX_PAYLOAD_LENGTH+9);  -- Output encoded data vector
+        valid_out    : out std_logic                                     -- Output encoded data valid signal
+      );
+  end component cobs_encode;
+  
 	 
 	 begin -- Instantiate UART transmitter 
+	 
 	 UART_TX_INST : uart_tx 
 	 generic map (g_CLKS_PER_BIT => c_CLKS_PER_BIT)
     port map (
@@ -122,21 +143,35 @@ end UART_WRITE_BYTE;
       o_rx_dv     => w_RX_DV,
       o_rx_byte   => w_RX_BYTE
       );
+		
+	COBS_ENCODE_INST : cobs_encode
+	generic map (
+      MAX_PAYLOAD_LENGTH => MAX_MESSAGE_LENGTH*8+1
+      )
+	port map (
+      clk          => r_CLOCK,
+      reset        => reset,
+      topic_id     => X"00",
+      payload_in   => payload,
+      valid_in     => data_full,
+      encoded_data => data,
+      valid_out    => next_proc
+      );
  
   -----------------------------------------------------
   -- Add Finite State machine to Broke the protocol
   -----------------------------------------------------
 
   -- Add state change based on clock and reset option
-  process(r_CLOCK, reset)
+  process(w_RX_DV, reset)
   begin
     if (reset = '1') then -- go to state zero if reset
       fsm_reg <= zero;
-    elsif (rising_edge(r_CLOCK)) then -- otherwise update the states
+    elsif (rising_edge(w_RX_DV)) then -- otherwise update the states
       fsm_reg <= fsm_next;
     else
       null;
-    end if; 
+    end if;
   end process;
   
 
@@ -205,20 +240,19 @@ end UART_WRITE_BYTE;
   end process;
   
   
-  SEND_DATA : process(r_CLOCK)
-  variable next_proc : std_logic := '0';
+  SEND_DATA : process(w_TX_DONE,r_CLOCK)
   variable const : integer := 0;
   
   begin
-  if(data_full='1') then
-    data <= payload;
-	 next_proc := '1';
-  elsif(rising_edge(r_CLOCK) and (next_proc='1')) then
-    UART_WRITE_BYTE(data((MAX_MESSAGE_LENGTH*8)-const downto (MAX_MESSAGE_LENGTH*8)-7-const), r_RX_SERIAL, r_CLOCK);
-	 const := const - 8;
-	 if const > 50 then
+  --if(data_full='1') then
+    --data <= payload;
+	 --next_proc := '1';
+  if((w_TX_DONE='1') and (next_proc='1')) then
+    if const > 50 then
 	   const := 0;
 	 end if;
+    UART_WRITE_BYTE(data((MAX_MESSAGE_LENGTH*8)-const downto (MAX_MESSAGE_LENGTH*8)-7-const), r_RX_SERIAL, r_CLOCK);
+	 const := const - 8;
   end if;
   
   end process;
