@@ -1,6 +1,6 @@
 Analysis & Synthesis report for ros2_serial_fpga
-Sun Jun 25 19:49:39 2023
-Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Mon Jun 26 10:40:55 2023
+Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
 
 
 ---------------------
@@ -17,8 +17,8 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   9. State Machine - |reader|UART_RX:UART_RX_INST|r_SM_Main
  10. State Machine - |reader|UART_TX:UART_TX_INST|r_SM_Main
  11. Registers Removed During Synthesis
- 12. General Register Statistics
- 13. Inverted Register Statistics
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
  14. Multiplexer Restructuring Statistics (Restructuring Performed)
  15. Parameter Settings for User Entity Instance: Top-level Entity: |reader
  16. Parameter Settings for User Entity Instance: UART_TX:UART_TX_INST
@@ -35,7 +35,7 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2020  Intel Corporation. All rights reserved.
+Copyright (C) 2023  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -52,24 +52,24 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                     ;
-+------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Jun 25 19:49:39 2023       ;
-; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
-; Revision Name                      ; ros2_serial_fpga                            ;
-; Top-level Entity Name              ; reader                                      ;
-; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 33                                          ;
-;     Total combinational functions  ; 31                                          ;
-;     Dedicated logic registers      ; 23                                          ;
-; Total registers                    ; 23                                          ;
-; Total pins                         ; 18                                          ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-+------------------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                        ;
++------------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Jun 26 10:40:55 2023          ;
+; Quartus Prime Version              ; 22.1std.1 Build 917 02/14/2023 SC Lite Edition ;
+; Revision Name                      ; ros2_serial_fpga                               ;
+; Top-level Entity Name              ; reader                                         ;
+; Family                             ; Cyclone IV E                                   ;
+; Total logic elements               ; 0                                              ;
+;     Total combinational functions  ; 0                                              ;
+;     Dedicated logic registers      ; 0                                              ;
+; Total registers                    ; 0                                              ;
+; Total pins                         ; 4                                              ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 0                                              ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 0                                              ;
++------------------------------------+------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -163,72 +163,67 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                            ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                     ; Library ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
-; reader.vhd                       ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd      ;         ;
-; UART_RX.vhd                      ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_RX.vhd     ;         ;
-; UART_TX.vhd                      ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_TX.vhd     ;         ;
-; COBS_Encode.vhd                  ; yes             ; User VHDL File  ; /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/COBS_Encode.vhd ;         ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                        ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                 ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------+---------+
+; reader.vhd                       ; yes             ; User VHDL File  ; /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd      ;         ;
+; UART_RX.vhd                      ; yes             ; User VHDL File  ; /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_RX.vhd     ;         ;
+; UART_TX.vhd                      ; yes             ; User VHDL File  ; /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_TX.vhd     ;         ;
+; COBS_Encode.vhd                  ; yes             ; User VHDL File  ; /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/COBS_Encode.vhd ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------+---------+
 
 
-+-------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                 ;
-+---------------------------------------------+---------------+
-; Resource                                    ; Usage         ;
-+---------------------------------------------+---------------+
-; Estimated Total logic elements              ; 33            ;
-;                                             ;               ;
-; Total combinational functions               ; 31            ;
-; Logic element usage by number of LUT inputs ;               ;
-;     -- 4 input functions                    ; 11            ;
-;     -- 3 input functions                    ; 11            ;
-;     -- <=2 input functions                  ; 9             ;
-;                                             ;               ;
-; Logic elements by mode                      ;               ;
-;     -- normal mode                          ; 25            ;
-;     -- arithmetic mode                      ; 6             ;
-;                                             ;               ;
-; Total registers                             ; 23            ;
-;     -- Dedicated logic registers            ; 23            ;
-;     -- I/O registers                        ; 0             ;
-;                                             ;               ;
-; I/O pins                                    ; 18            ;
-;                                             ;               ;
-; Embedded Multiplier 9-bit elements          ; 0             ;
-;                                             ;               ;
-; Maximum fan-out node                        ; r_CLOCK~input ;
-; Maximum fan-out                             ; 23            ;
-; Total fan-out                               ; 178           ;
-; Average fan-out                             ; 1.82          ;
-+---------------------------------------------+---------------+
++------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                      ;
++---------------------------------------------+--------------------+
+; Resource                                    ; Usage              ;
++---------------------------------------------+--------------------+
+;                                             ;                    ;
+; Total combinational functions               ; 0                  ;
+; Logic element usage by number of LUT inputs ;                    ;
+;     -- 4 input functions                    ; 0                  ;
+;     -- 3 input functions                    ; 0                  ;
+;     -- <=2 input functions                  ; 0                  ;
+;                                             ;                    ;
+; Logic elements by mode                      ;                    ;
+;     -- normal mode                          ; 0                  ;
+;     -- arithmetic mode                      ; 0                  ;
+;                                             ;                    ;
+; Total registers                             ; 0                  ;
+;     -- Dedicated logic registers            ; 0                  ;
+;     -- I/O registers                        ; 0                  ;
+;                                             ;                    ;
+; I/O pins                                    ; 4                  ;
+;                                             ;                    ;
+; Embedded Multiplier 9-bit elements          ; 0                  ;
+;                                             ;                    ;
+; Maximum fan-out node                        ; r_RX_SERIAL~output ;
+; Maximum fan-out                             ; 1                  ;
+; Total fan-out                               ; 5                  ;
+; Average fan-out                             ; 0.56               ;
++---------------------------------------------+--------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                              ;
-+-----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+-------------+--------------+
-; Compilation Hierarchy Node        ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                  ; Entity Name ; Library Name ;
-+-----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+-------------+--------------+
-; |reader                           ; 31 (1)              ; 23 (1)                    ; 0           ; 0            ; 0       ; 0         ; 18   ; 0            ; |reader                              ; reader      ; work         ;
-;    |COBS_Encode:COBS_ENCODE_INST| ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reader|COBS_Encode:COBS_ENCODE_INST ; COBS_Encode ; work         ;
-;    |UART_RX:UART_RX_INST|         ; 29 (29)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reader|UART_RX:UART_RX_INST         ; UART_RX     ; work         ;
-;    |UART_TX:UART_TX_INST|         ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reader|UART_TX:UART_TX_INST         ; UART_TX     ; work         ;
-+-----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+-------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+; |reader                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 4    ; 0            ; |reader             ; reader      ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -281,6 +276,7 @@ Encoding Type:  One-Hot
 ; Register name                                 ; Reason for Removal                     ;
 +-----------------------------------------------+----------------------------------------+
 ; UART_RX:UART_RX_INST|r_RX_DV                  ; Stuck at GND due to stuck port data_in ;
+; UART_TX:UART_TX_INST|o_TX_Serial              ; Stuck at VCC due to stuck port data_in ;
 ; UART_RX:UART_RX_INST|r_SM_Main.s_RX_Start_Bit ; Lost fanout                            ;
 ; UART_RX:UART_RX_INST|r_SM_Main.s_RX_Data_Bits ; Lost fanout                            ;
 ; UART_RX:UART_RX_INST|r_SM_Main.s_RX_Stop_Bit  ; Lost fanout                            ;
@@ -297,8 +293,34 @@ Encoding Type:  One-Hot
 ; fsm_reg.three                                 ; Stuck at GND due to stuck port clock   ;
 ; fsm_reg.four                                  ; Stuck at GND due to stuck port clock   ;
 ; fsm_reg.five                                  ; Stuck at GND due to stuck port clock   ;
-; Total Number of Removed Registers = 17        ;                                        ;
+; UART_RX:UART_RX_INST|r_RX_Byte[0..7]          ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_RX_Data                ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_RX_Data_R              ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_Bit_Index[0..2]        ; Lost fanout                            ;
+; UART_RX:UART_RX_INST|r_Clk_Count[0..8]        ; Lost fanout                            ;
+; r_RX_SERIAL~reg0                              ; Stuck at GND due to stuck port data_in ;
+; UART_TX:UART_TX_INST|r_TX_Done                ; Lost fanout                            ;
+; COBS_Encode:COBS_ENCODE_INST|output_valid     ; Lost fanout                            ;
+; Total Number of Removed Registers = 43        ;                                        ;
 +-----------------------------------------------+----------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                              ;
++------------------+---------------------------+---------------------------------------------------------------------------+
+; Register name    ; Reason for Removal        ; Registers Removed due to This Register                                    ;
++------------------+---------------------------+---------------------------------------------------------------------------+
+; fsm_reg.one      ; Stuck at GND              ; UART_RX:UART_RX_INST|r_RX_Byte[4], UART_RX:UART_RX_INST|r_RX_Data,        ;
+;                  ; due to stuck port clock   ; UART_RX:UART_RX_INST|r_RX_Data_R, UART_RX:UART_RX_INST|r_Bit_Index[2],    ;
+;                  ;                           ; UART_RX:UART_RX_INST|r_Bit_Index[1], UART_RX:UART_RX_INST|r_Bit_Index[0], ;
+;                  ;                           ; UART_RX:UART_RX_INST|r_Clk_Count[8], UART_RX:UART_RX_INST|r_Clk_Count[7], ;
+;                  ;                           ; UART_RX:UART_RX_INST|r_Clk_Count[6], UART_RX:UART_RX_INST|r_Clk_Count[5], ;
+;                  ;                           ; UART_RX:UART_RX_INST|r_Clk_Count[4]                                       ;
+; fsm_reg.five     ; Stuck at GND              ; UART_RX:UART_RX_INST|r_RX_Byte[3], UART_RX:UART_RX_INST|r_RX_Byte[2],     ;
+;                  ; due to stuck port clock   ; UART_RX:UART_RX_INST|r_RX_Byte[1]                                         ;
+; r_RX_SERIAL~reg0 ; Stuck at GND              ; UART_TX:UART_TX_INST|r_TX_Done, COBS_Encode:COBS_ENCODE_INST|output_valid ;
+;                  ; due to stuck port data_in ;                                                                           ;
++------------------+---------------------------+---------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -306,8 +328,8 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 23    ;
-; Number of registers using Synchronous Clear  ; 7     ;
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -316,23 +338,13 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; r_RX_SERIAL                            ; 2       ;
-; Total number of inverted registers = 1 ;         ;
-+----------------------------------------+---------+
-
-
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 ; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |reader|UART_RX:UART_RX_INST|r_Bit_Index[0] ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |reader|Selector197                         ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |reader|Selector201                         ;
 ; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |reader|Selector202                         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 
@@ -342,7 +354,7 @@ Encoding Type:  One-Hot
 +--------------------+-------+-------------------------------------------+
 ; Parameter Name     ; Value ; Type                                      ;
 +--------------------+-------+-------------------------------------------+
-; c_CLKS_PER_BIT     ; 115   ; Signed Integer                            ;
+; c_CLKS_PER_BIT     ; 434   ; Signed Integer                            ;
 ; MAX_MESSAGE_LENGTH ; 25    ; Signed Integer                            ;
 +--------------------+-------+-------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
@@ -353,7 +365,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+------------------------------------------+
 ; Parameter Name ; Value ; Type                                     ;
 +----------------+-------+------------------------------------------+
-; g_clks_per_bit ; 115   ; Signed Integer                           ;
+; g_clks_per_bit ; 434   ; Signed Integer                           ;
 +----------------+-------+------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -363,7 +375,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+------------------------------------------+
 ; Parameter Name ; Value ; Type                                     ;
 +----------------+-------+------------------------------------------+
-; g_clks_per_bit ; 115   ; Signed Integer                           ;
+; g_clks_per_bit ; 434   ; Signed Integer                           ;
 +----------------+-------+------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -394,8 +406,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Port        ; Type   ; Severity ; Details                                                                             ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 ; i_tx_dv     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_tx_byte   ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; o_tx_active ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; o_tx_serial ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -404,21 +416,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 18                          ;
-; cycloneiii_ff         ; 23                          ;
-;     SCLR              ; 7                           ;
-;     plain             ; 16                          ;
-; cycloneiii_io_obuf    ; 8                           ;
-; cycloneiii_lcell_comb ; 31                          ;
-;     arith             ; 6                           ;
-;         2 data inputs ; 6                           ;
-;     normal            ; 25                          ;
-;         1 data inputs ; 3                           ;
-;         3 data inputs ; 11                          ;
-;         4 data inputs ; 11                          ;
+; boundary_port         ; 4                           ;
+; cycloneiii_io_obuf    ; 1                           ;
+; cycloneiii_lcell_comb ; 1                           ;
+;     normal            ; 1                           ;
+;         0 data inputs ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 2.06                        ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -427,7 +432,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -436,444 +441,426 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Jun 25 19:46:29 2023
+    Info: Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+    Info: Processing started: Mon Jun 26 10:40:45 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ros2_serial_fpga -c ros2_serial_fpga
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file reader.vhd
-    Info (12022): Found design unit 1: reader-behave File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 21
-    Info (12023): Found entity 1: reader File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 8
+    Info (12022): Found design unit 1: reader-behave File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 22
+    Info (12023): Found entity 1: reader File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 8
 Info (12021): Found 2 design units, including 1 entities, in source file UART_RX.vhd
-    Info (12022): Found design unit 1: UART_RX-rtl File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_RX.vhd Line: 31
-    Info (12023): Found entity 1: UART_RX File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_RX.vhd Line: 18
+    Info (12022): Found design unit 1: UART_RX-rtl File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_RX.vhd Line: 31
+    Info (12023): Found entity 1: UART_RX File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_RX.vhd Line: 18
 Info (12021): Found 2 design units, including 1 entities, in source file UART_TX.vhd
-    Info (12022): Found design unit 1: UART_TX-RTL File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_TX.vhd Line: 33
-    Info (12023): Found entity 1: UART_TX File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/UART_TX.vhd Line: 18
+    Info (12022): Found design unit 1: UART_TX-RTL File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_TX.vhd Line: 33
+    Info (12023): Found entity 1: UART_TX File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/UART_TX.vhd Line: 18
 Info (12021): Found 2 design units, including 1 entities, in source file COBS_Encode.vhd
-    Info (12022): Found design unit 1: COBS_Encode-rtl File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/COBS_Encode.vhd Line: 20
-    Info (12023): Found entity 1: COBS_Encode File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/COBS_Encode.vhd Line: 5
+    Info (12022): Found design unit 1: COBS_Encode-rtl File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/COBS_Encode.vhd Line: 20
+    Info (12023): Found entity 1: COBS_Encode File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/COBS_Encode.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file CRC16.vhd
-    Info (12022): Found design unit 1: crc16-rtl File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/CRC16.vhd Line: 15
-    Info (12023): Found entity 1: crc16 File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/CRC16.vhd Line: 5
+    Info (12022): Found design unit 1: crc16-rtl File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/CRC16.vhd Line: 15
+    Info (12023): Found entity 1: crc16 File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/CRC16.vhd Line: 5
 Info (12127): Elaborating entity "reader" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at reader.vhd(25): object "len" assigned a value but never read File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 25
-Warning (10036): Verilog HDL or VHDL warning at reader.vhd(26): object "crc" assigned a value but never read File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 26
-Warning (10540): VHDL Signal Declaration warning at reader.vhd(65): used explicit default value for signal "r_TX_DV" because signal was never assigned a value File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 65
-Warning (10036): Verilog HDL or VHDL warning at reader.vhd(66): object "w_TX_SERIAL" assigned a value but never read File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 66
-Warning (10631): VHDL Process Statement warning at reader.vhd(178): inferring latch(es) for signal or variable "aux_len", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (10631): VHDL Process Statement warning at reader.vhd(178): inferring latch(es) for signal or variable "aux_crc", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (10631): VHDL Process Statement warning at reader.vhd(178): inferring latch(es) for signal or variable "pay", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (10631): VHDL Process Statement warning at reader.vhd(178): inferring latch(es) for signal or variable "payload", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (10631): VHDL Process Statement warning at reader.vhd(178): inferring latch(es) for signal or variable "data_full", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (10492): VHDL Process Statement warning at reader.vhd(250): signal "next_proc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 250
-Warning (10492): VHDL Process Statement warning at reader.vhd(254): signal "data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 254
-Warning (10631): VHDL Process Statement warning at reader.vhd(243): inferring latch(es) for signal or variable "const", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 243
-Info (10041): Inferred latch for "data_full" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[0]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[1]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[2]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[3]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[4]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[5]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[6]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[7]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[8]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[9]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[10]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[11]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[12]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[13]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[14]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[15]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[16]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[17]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[18]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[19]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[20]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[21]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[22]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[23]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[24]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[25]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[26]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[27]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[28]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[29]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[30]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[31]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[32]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[33]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[34]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[35]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[36]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[37]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[38]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[39]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[40]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[41]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[42]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[43]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[44]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[45]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[46]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[47]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[48]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[49]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[50]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[51]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[52]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[53]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[54]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[55]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[56]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[57]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[58]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[59]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[60]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[61]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[62]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[63]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[64]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[65]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[66]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[67]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[68]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[69]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[70]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[71]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[72]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[73]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[74]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[75]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[76]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[77]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[78]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[79]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[80]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[81]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[82]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[83]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[84]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[85]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[86]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[87]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[88]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[89]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[90]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[91]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[92]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[93]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[94]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[95]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[96]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[97]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[98]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[99]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[100]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[101]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[102]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[103]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[104]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[105]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[106]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[107]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[108]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[109]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[110]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[111]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[112]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[113]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[114]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[115]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[116]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[117]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[118]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[119]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[120]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[121]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[122]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[123]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[124]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[125]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[126]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[127]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[128]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[129]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[130]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[131]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[132]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[133]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[134]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[135]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[136]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[137]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[138]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[139]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[140]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[141]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[142]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[143]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[144]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[145]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[146]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[147]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[148]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[149]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[150]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[151]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[152]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[153]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[154]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[155]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[156]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[157]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[158]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[159]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[160]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[161]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[162]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[163]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[164]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[165]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[166]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[167]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[168]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[169]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[170]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[171]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[172]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[173]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[174]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[175]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[176]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[177]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[178]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[179]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[180]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[181]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[182]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[183]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[184]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[185]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[186]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[187]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[188]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[189]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[190]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[191]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[192]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[193]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[194]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[195]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[196]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[197]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[198]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[199]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "payload[200]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[0]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[1]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[2]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[3]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[4]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[5]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[6]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[7]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[8]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[9]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[10]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[11]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[12]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[13]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[14]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[15]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[16]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[17]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[18]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[19]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[20]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[21]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[22]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[23]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[24]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[25]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[26]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[27]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[28]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[29]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[30]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "pay[31]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[0]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[1]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[2]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[3]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[4]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[5]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[6]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[7]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[8]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[9]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[10]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[11]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[12]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[13]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[14]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[15]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[16]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[17]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[18]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[19]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[20]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[21]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[22]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[23]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[24]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[25]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[26]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[27]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[28]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[29]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[30]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_crc[31]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[0]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[1]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[2]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[3]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[4]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[5]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[6]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[7]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[8]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[9]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[10]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[11]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[12]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[13]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[14]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[15]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[16]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[17]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[18]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[19]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[20]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[21]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[22]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[23]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[24]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[25]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[26]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[27]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[28]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[29]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[30]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (10041): Inferred latch for "aux_len[31]" at reader.vhd(178) File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Info (12128): Elaborating entity "UART_TX" for hierarchy "UART_TX:UART_TX_INST" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 124
-Info (12128): Elaborating entity "UART_RX" for hierarchy "UART_RX:UART_RX_INST" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 136
-Info (12128): Elaborating entity "COBS_Encode" for hierarchy "COBS_Encode:COBS_ENCODE_INST" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 147
-Warning (14025): LATCH primitive "aux_crc[31]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[30]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[29]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[28]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[27]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[26]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[25]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[24]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[23]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[22]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[21]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[20]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[19]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[18]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[17]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[16]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[15]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[14]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[13]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[12]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[11]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[10]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[9]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[8]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[7]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[6]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[5]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[4]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[3]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[2]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[0]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_crc[1]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[31]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[30]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[29]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[28]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[27]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[26]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[25]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[24]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[23]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[22]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[21]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[20]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[19]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[18]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[17]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[16]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[15]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[14]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[13]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[12]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[11]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[10]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[9]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[8]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[7]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[6]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[5]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[4]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[3]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[2]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[0]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
-Warning (14025): LATCH primitive "aux_len[1]" is permanently disabled File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 178
+Warning (10036): Verilog HDL or VHDL warning at reader.vhd(26): object "len" assigned a value but never read File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 26
+Warning (10036): Verilog HDL or VHDL warning at reader.vhd(27): object "crc" assigned a value but never read File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 27
+Warning (10540): VHDL Signal Declaration warning at reader.vhd(66): used explicit default value for signal "r_TX_DV" because signal was never assigned a value File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 66
+Warning (10540): VHDL Signal Declaration warning at reader.vhd(72): used explicit default value for signal "r_TX_BYTE" because signal was never assigned a value File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 72
+Warning (10631): VHDL Process Statement warning at reader.vhd(181): inferring latch(es) for signal or variable "aux_len", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (10631): VHDL Process Statement warning at reader.vhd(181): inferring latch(es) for signal or variable "aux_crc", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (10631): VHDL Process Statement warning at reader.vhd(181): inferring latch(es) for signal or variable "pay", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (10631): VHDL Process Statement warning at reader.vhd(181): inferring latch(es) for signal or variable "payload", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (10631): VHDL Process Statement warning at reader.vhd(181): inferring latch(es) for signal or variable "data_full", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (10492): VHDL Process Statement warning at reader.vhd(253): signal "next_proc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 253
+Warning (10492): VHDL Process Statement warning at reader.vhd(257): signal "data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 257
+Warning (10631): VHDL Process Statement warning at reader.vhd(246): inferring latch(es) for signal or variable "const", which holds its previous value in one or more paths through the process File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 246
+Info (10041): Inferred latch for "data_full" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[0]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[1]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[2]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[3]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[4]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[5]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[6]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[7]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[8]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[9]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[10]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[11]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[12]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[13]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[14]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[15]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[16]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[17]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[18]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[19]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[20]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[21]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[22]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[23]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[24]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[25]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[26]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[27]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[28]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[29]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[30]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[31]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[32]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[33]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[34]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[35]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[36]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[37]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[38]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[39]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[40]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[41]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[42]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[43]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[44]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[45]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[46]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[47]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[48]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[49]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[50]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[51]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[52]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[53]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[54]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[55]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[56]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[57]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[58]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[59]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[60]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[61]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[62]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[63]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[64]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[65]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[66]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[67]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[68]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[69]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[70]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[71]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[72]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[73]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[74]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[75]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[76]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[77]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[78]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[79]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[80]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[81]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[82]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[83]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[84]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[85]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[86]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[87]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[88]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[89]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[90]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[91]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[92]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[93]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[94]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[95]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[96]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[97]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[98]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[99]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[100]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[101]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[102]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[103]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[104]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[105]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[106]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[107]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[108]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[109]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[110]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[111]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[112]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[113]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[114]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[115]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[116]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[117]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[118]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[119]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[120]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[121]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[122]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[123]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[124]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[125]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[126]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[127]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[128]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[129]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[130]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[131]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[132]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[133]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[134]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[135]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[136]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[137]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[138]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[139]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[140]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[141]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[142]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[143]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[144]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[145]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[146]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[147]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[148]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[149]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[150]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[151]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[152]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[153]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[154]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[155]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[156]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[157]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[158]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[159]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[160]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[161]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[162]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[163]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[164]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[165]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[166]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[167]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[168]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[169]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[170]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[171]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[172]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[173]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[174]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[175]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[176]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[177]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[178]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[179]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[180]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[181]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[182]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[183]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[184]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[185]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[186]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[187]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[188]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[189]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[190]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[191]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[192]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[193]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[194]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[195]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[196]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[197]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[198]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[199]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "payload[200]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[0]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[1]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[2]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[3]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[4]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[5]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[6]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[7]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[8]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[9]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[10]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[11]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[12]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[13]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[14]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[15]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[16]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[17]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[18]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[19]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[20]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[21]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[22]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[23]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[24]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[25]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[26]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[27]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[28]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[29]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[30]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "pay[31]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[0]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[1]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[2]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[3]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[4]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[5]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[6]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[7]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[8]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[9]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[10]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[11]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[12]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[13]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[14]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[15]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[16]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[17]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[18]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[19]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[20]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[21]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[22]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[23]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[24]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[25]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[26]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[27]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[28]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[29]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[30]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_crc[31]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[0]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[1]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[2]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[3]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[4]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[5]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[6]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[7]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[8]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[9]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[10]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[11]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[12]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[13]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[14]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[15]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[16]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[17]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[18]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[19]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[20]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[21]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[22]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[23]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[24]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[25]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[26]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[27]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[28]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[29]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[30]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (10041): Inferred latch for "aux_len[31]" at reader.vhd(181) File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Info (12128): Elaborating entity "UART_TX" for hierarchy "UART_TX:UART_TX_INST" File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 127
+Info (12128): Elaborating entity "UART_RX" for hierarchy "UART_RX:UART_RX_INST" File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 139
+Info (12128): Elaborating entity "COBS_Encode" for hierarchy "COBS_Encode:COBS_ENCODE_INST" File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 150
+Warning (14025): LATCH primitive "aux_crc[31]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[30]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[29]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[28]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[27]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[26]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[25]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[24]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[23]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[22]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[21]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[20]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[19]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[18]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[17]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[16]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[15]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[14]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[13]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[12]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[11]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[10]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[9]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[8]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[7]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[6]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[5]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[4]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[3]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[2]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[0]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_crc[1]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[31]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[30]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[29]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[28]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[27]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[26]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[25]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[24]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[23]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[22]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[21]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[20]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[19]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[18]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[17]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[16]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[15]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[14]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[13]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[12]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[11]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[10]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[9]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[8]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[7]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[6]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[5]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[4]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[3]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[2]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[0]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
+Warning (14025): LATCH primitive "aux_len[1]" is permanently disabled File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 181
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[0]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[1]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[2]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[3]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[4]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[5]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[6]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13035): Inserted always-enabled tri-state buffer between "w_RX_BYTE[7]" and its non-tri-state driver. File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
+    Warning (13035): Inserted always-enabled tri-state buffer between "r_RX_SERIAL" and its non-tri-state driver. File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 17
+Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "r_RX_SERIAL" is moved to its source File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 17
 Warning (13009): TRI or OPNDRN buffers permanently enabled
-    Warning (13010): Node "w_RX_BYTE[0]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[1]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[2]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[3]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[4]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[5]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[6]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-    Warning (13010): Node "w_RX_BYTE[7]~synth" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 16
-Info (286030): Timing-Driven Synthesis is running
-Info (17049): 10 registers lost all their fanouts during netlist optimizations.
+    Warning (13010): Node "r_RX_SERIAL~synth" File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 17
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "w_TX_SERIAL" is stuck at VCC File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 18
+Info (17049): 34 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 8 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[0]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[1]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[2]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[3]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[4]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[5]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[6]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-    Warning (15610): No output dependent on input pin "r_TX_BYTE[7]" File: /home/tiago/tiago-projectc/ros2-serial-fpga/fpga/reader.vhd Line: 15
-Info (21057): Implemented 51 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 10 input pins
-    Info (21059): Implemented 0 output pins
-    Info (21060): Implemented 8 bidirectional pins
-    Info (21061): Implemented 33 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 104 warnings
-    Info: Peak virtual memory: 936 megabytes
-    Info: Processing ended: Sun Jun 25 19:49:39 2023
-    Info: Elapsed time: 00:03:10
-    Info: Total CPU time (on all processors): 00:03:17
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "r_CLOCK" File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 14
+    Warning (15610): No output dependent on input pin "reset" File: /home/tiago/tiago-projects/fpga_ws/src/ros2-serial-fpga/fpga/reader.vhd Line: 13
+Info (21057): Implemented 4 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 1 output pins
+    Info (21060): Implemented 1 bidirectional pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 86 warnings
+    Info: Peak virtual memory: 745 megabytes
+    Info: Processing ended: Mon Jun 26 10:40:55 2023
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:17
 
 

@@ -7,14 +7,15 @@ use ieee.numeric_std.all;
  
 entity reader is
 generic (
-    c_CLKS_PER_BIT : integer := 115;     -- Needs to be set correctly
+    c_CLKS_PER_BIT : integer := 434;     -- Needs to be set correctly
 	 MAX_MESSAGE_LENGTH: positive := 25
     );
   port(reset  : in std_logic;
   r_CLOCK     : in std_logic;
-  r_TX_BYTE   : in std_logic_vector(7 downto 0);
-  w_RX_BYTE   : inout std_logic_vector(7 downto 0)
-  --r_RX_SERIAL : in std_logic
+  --r_TX_BYTE   : in std_logic_vector(7 downto 0);
+  --w_RX_BYTE   : inout std_logic_vector(7 downto 0)
+  r_RX_SERIAL : inout std_logic;
+  w_TX_SERIAL : out std_logic
   );
 end reader;
  
@@ -63,10 +64,12 @@ architecture behave of reader is
   constant c_BIT_PERIOD : time := 8680 ns;
   
   signal r_TX_DV     : std_logic                    := '0';
-  signal w_TX_SERIAL : std_logic;
+  --signal w_TX_SERIAL : std_logic;
   signal w_TX_DONE   : std_logic;
   signal w_RX_DV     : std_logic;
-  signal r_RX_SERIAL : std_logic := '1';
+  -- signal r_RX_SERIAL : std_logic := '1';
+  signal w_RX_BYTE   : std_logic_vector(7 downto 0);
+  signal r_TX_BYTE   : std_logic_vector(7 downto 0) := (others => '0');
   
   -- Low-level byte-write
 procedure UART_WRITE_BYTE (

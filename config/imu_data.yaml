@@ -2,7 +2,7 @@ ros2_to_serial_bridge:
     ros__parameters:
         backend_comms: uart            # Which backend to use for communications;
                                        # 'uart' and 'udp' are currently supported.
-        device: /dev/pts/6             # Which device to use for communications;
+        device: /dev/ttyUSB0           # Which device to use for communications;
                                        # only used when backend is 'uart'.
         baudrate: 115200                   # The baudrate to set on the device; if
                                        # set to 0, setting baudrate is skipped.
